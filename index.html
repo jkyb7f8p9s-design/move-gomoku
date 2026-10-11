@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="移动五子棋">
+<meta name="application-name" content="移动五子棋">
+<meta name="theme-color" content="#161a24">
+<meta name="format-detection" content="telephone=no">
+<meta name="description" content="移动五子棋：棋子会走路的五子棋，阵型动态博弈。">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
+<link rel="stylesheet" href="style.css">
+<title>移动五子棋</title>
+</head>
+<body>
+<div id="app">
+  <!-- 主菜单 -->
+  <section id="screen-menu" class="screen active">
+    <div class="menu-scroll scroll">
+      <header class="menu-head">
+        <div class="logo" aria-hidden="true"><span class="lg r"></span><span class="lg b"></span><span class="lg r"></span><span class="lg b"></span></div>
+        <h1>移动五子棋</h1>
+        <p class="sub">棋子会走路 · 阵型动态博弈</p>
+      </header>
+      <div class="card rank-card" id="rank-card"></div>
+      <div class="card stats-card" id="stats-card"></div>
+      <div class="cur-setting" id="cur-setting"></div>
+      <button class="btn primary big" id="btn-start">开始对局</button>
+      <button class="btn daily" id="btn-daily"><span>每日挑战</span><small id="daily-state"></small></button>
+      <div class="menu-row">
+        <button class="btn" id="btn-settings">设置</button>
+        <button class="btn" id="btn-ach">成就</button>
+        <button class="btn" id="btn-help">玩法</button>
+      </div>
+      <p class="foot">离线可玩 · 添加到主屏幕获得全屏体验</p>
+    </div>
+  </section>
+
+  <!-- 对局 -->
+  <section id="screen-game" class="screen">
+    <header class="topbar">
+      <button class="icon-btn" id="btn-back" aria-label="返回主菜单">‹</button>
+      <div class="tb-title"><b>移动五子棋</b><small id="game-sub"></small></div>
+      <div class="tb-badge" id="rank-badge"></div>
+      <button class="icon-btn" id="btn-mute" aria-label="静音">♪</button>
+    </header>
+    <div class="players">
+      <div class="pchip" id="chip-1"><span class="pstone red"></span><div class="pinfo"><b class="pname"></b><small class="pmeta"></small></div></div>
+      <div class="vs">VS</div>
+      <div class="pchip" id="chip-2"><span class="pstone blue"></span><div class="pinfo"><b class="pname"></b><small class="pmeta"></small></div></div>
+    </div>
+    <div class="boost-banner hidden" id="boost-banner">⚡ 加速模式 · 剩余 <b id="boost-left">8</b> 回合 · 可直走 2 格</div>
+    <main id="board-wrap">
+      <div id="board">
+        <div id="layer-coords"></div>
+        <div id="layer-hl"></div>
+        <div id="layer-stones"></div>
+        <svg id="layer-line" xmlns="http://www.w3.org/2000/svg"></svg>
+      </div>
+    </main>
+    <div class="statusbar">
+      <div class="sb-row">
+        <div class="turn-ind" id="turn-ind"><span class="tdot"></span><span id="turn-text"></span></div>
+        <div class="turn-count" id="turn-count"></div>
+      </div>
+      <div class="timer" id="timer"><div class="timer-fill" id="timer-fill"></div><span id="timer-text"></span></div>
+      <div class="msg" id="msg"></div>
+    </div>
+    <footer class="actions">
+      <button class="act" id="btn-undo"><span>悔棋</span><em id="undo-n">3</em></button>
+      <button class="act" id="btn-hint"><span>提示</span><em id="hint-n">2</em></button>
+      <button class="act" id="btn-draw"><span>和棋</span><em id="draw-n"></em></button>
+      <button class="act danger" id="btn-resign"><span>认输</span></button>
+    </footer>
+  </section>
+</div>
+<div id="modal-root"></div>
+<div id="toast-root"></div>
+<noscript>需要启用 JavaScript 才能游玩。</noscript>
+<script src="js/engine.js"></script>
+<script src="js/ai.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
